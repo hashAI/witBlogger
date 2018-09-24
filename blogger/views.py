@@ -34,6 +34,8 @@ class BlogListView(View):
 
     def get(self, request, *args, **kwargs):
         blogs = models.Blog.objects.filter(author=request.user)
+        #for blog in blogs:
+        #    blog.content = blog.content[:200]
         return render(request, self.template_name, {'blogs': blogs})
 
 @method_decorator(csrf_exempt, name='dispatch')

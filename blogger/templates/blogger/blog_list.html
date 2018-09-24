@@ -1,8 +1,13 @@
 {% extends 'blogger/base.html' %}
 {% block page_header %}
+<ol class="breadcrumb">
+   <li class="breadcrumb-item"><a href="/blogs">My Blogs</a></li>
+</ol>
+<!--
     <div class="pb-2 mt-4 mb-2 text-center">
         <h2>My Articles</h2>      
     </div>
+-->
 {% endblock %}
 
 {% block content %}
@@ -26,7 +31,7 @@
       <div class="card-body">
         <h4 class="card-title">{{ blog.title }}</h4>
         <p class="card-text">{{ blog.content | safe}}</p>
-        <a class="link" href="/blog/read/{{blog.id}}">Read more...</a>
+        <a class="link" href="/blog/read/{{blog.id}}"><i>Click here to read full article</i></a>
       </div>
       <div class="card-footer blog-options-small"><span>Author: {{blog.author}}</span><span class="float-right">Last Edited: {{blog.updated_on}}</span></div>
     </div>

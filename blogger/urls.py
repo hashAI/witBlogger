@@ -6,6 +6,7 @@ from . import forms
 from . import views
 
 urlpatterns = [
+        path('', auth_views.login, {'authentication_form':forms.LoginForm}),
         path('login/', auth_views.login, {'authentication_form':forms.LoginForm}),
         path('', include(auth_urls)),
         path('blog/create', views.BlogCreateView.as_view()),
