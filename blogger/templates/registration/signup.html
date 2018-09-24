@@ -1,0 +1,34 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+<div class="jumbotron bg-light">
+<h3 class="text-center mb-3"> Signup </h3>
+<form method="post">
+{% csrf_token %}
+    <fieldset>
+    <div class="form-group mb-2 pl-5 pr-5">
+        <label for="username">Username</label>
+            {{ form.username }}
+            <small style="color:red">{{ form.username.errors }}</small>
+    </div>
+    <div class="form-group mb-2 pl-5 pr-5">
+        <label for="email">Email</label>
+            {{ form.email }}
+            <small style="color:red">{{ form.email.errors }}</small>
+    </div>
+    <div class="form-group mb-2 pl-5 pr-5">
+        <label for="password1">Password</label>
+            {{ form.password1 }}
+            <small style="color:red">{{ form.password1.errors }}</small>
+    </div>
+    <div class="form-group mb-2 pl-5 pr-5">
+        <label for="password2">Confirm Password</label>
+            {{ form.password2 }}
+            <small style="color:red">{{ form.password2.errors }}</small>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm mt-2 ml-4 mr-5 float-right"> &nbsp;Signup&nbsp; </button>
+    </fieldset>
+</form>
+</div>
+{% endblock %}
+

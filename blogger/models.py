@@ -39,3 +39,4 @@ class UserProfile(models.Model):
     occupation = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     hobbies = models.CharField(max_length=300)
+
