@@ -1,0 +1,26 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+<h2 class="text-center mb-4"> Login </h2>
+<form method="post">
+{% csrf_token %}
+    <fieldset>
+    <div class="input-group input-group-sm mb-3 pl-4 pr-4">
+        <div class="input-group-prepend">
+            <button class="btn btn-secondary" type="button">Username</button>
+        </div>
+            {{ form.username }}
+    </div>
+    <div class="input-group input-group-sm mb-3 pl-4 pr-4">
+        <div class="input-group-prepend">
+            <button class="btn btn-secondary" type="button">Password</button>
+        </div>
+            {{ form.password }}
+    </div>
+    <button type="submit" class="btn btn-sm btn-primary ml-4 mr-4 float-right"> &nbsp;Login&nbsp; </button>
+    </fieldset>
+</form>
+</div>
+{% endblock %}
+
