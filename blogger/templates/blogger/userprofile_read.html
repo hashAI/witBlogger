@@ -1,0 +1,87 @@
+{% extends 'blogger/base.html' %}
+{% block page_header %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item active"><a href="/myprofile">My Profile</a></li>
+</ol>
+{% endblock %}
+
+{% block content %}
+<div class="container jumbotron bg-light profile-container">
+    <div>
+    <div class="row mb-3">
+        <div class="col-md-12 text-center">
+            <a href="/myprofile/edit"><h5>Edit Profile</h5></a>
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="email">Email</label>
+                {{ form.email }}
+                <small style="color:red">{{ form.email.errors }}</small>
+            </div>
+            <div class="form-group">
+                <label for="nick_name">Nick Name</label>
+                {{ form.nick_name }}
+                <small style="color:red">{{ form.nick_name.errors }}</small>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-4 ">
+            <div class="form-group text-center">
+                    <div class="card profile-card">
+                        <img class="card-image-top" src="/static/uploads/{{form.user_pic.value}}">
+                        <b class="card-text bg-primary">
+                            Profile Photo
+                        </b>
+                    </div>
+                  <input type="file" id="user_pic" name="user_pic" style="display:none">
+            </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+            </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="occupation">Occupation</label>
+                {{ form.occupation }}
+                <small style="color:red">{{ form.occupation.errors }}</small>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="city">City</label>
+                {{ form.city }}
+                <small style="color:red">{{ form.city.errors }}</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+            <label for="description">Describe Yourself</label>
+            {{ form.description }}
+            <small style="color:red">{{ form.description.errors }}</small>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="hobbies">Hobbies</label>
+                {{ form.hobbies }}
+                <small style="color:red">{{ form.hobbies.errors }}</small>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+{% block footer_includes %}
+<script>
+$(document).ready(function(){
+     $("input, textarea").attr({"readonly":true})        
+})
+</script>
+{% endblock %}
