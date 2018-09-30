@@ -28,18 +28,38 @@
   </head>
   <body>
 
-    <header class="pb-5 mb-5">
+    <header class="pb-5 mb-4">
         <nav class="navbar fixed-top navbar-dark bg-dark">
-            <a class="navbar-brand" href="#!">WitBlogger</a>
-            <ul class="nav navbar-nav ml-auto" >
-                <li><a style="text-decoration:none;color:white" href="/logout">Logout</a></li>
-            </ul>
+            <a class="navbar-brand" href="/blogs">WitBlogger
+                <!--<img src="/static/assets/src/images/logo.png" alt="WitBlogger">--></a>
+            <form class="form-inline ml-auto mr-5" id="form-blog-search">
+                <input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Search blogs">
+                <button class="btn btn-sm btn-warning" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <small><span class="navbar-toggler-icon"></span></small>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto text-right" >
+                    <li class="nav-item pt-1"><a class="nav-link" href="/myprofile">Profile</a></li>
+                    <li class="nav-item pt-1"><a class="nav-link" href="/logout">Logout</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
     
-    <section class="container">
-        {% block page_header %}
-        {% endblock %}
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+            {% block page_header %}
+            {% endblock %}
+            </div>
+            <div class="col-md-1"></div>
+        </div>
         <div class="row">
             <!--
             <div class="col-md-3 nav-aside bg-light">
@@ -49,7 +69,7 @@
             </div>
             -->
             <div class="col-md-1"></div>
-            <div class="col-md-10 main-content">
+            <div class="col-md-10 main-content ml-2 mr-2">
             {% block content %}
             {% endblock %}
             </div>

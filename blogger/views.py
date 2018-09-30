@@ -9,6 +9,40 @@ from django.views.decorators.csrf import csrf_exempt
 from . import models
 from . import forms
 
+@method_decorator(csrf_exempt, name='dispatch')
+class UserProfileEditView(View):
+    template_name = 'blogger/userprofile_edit.html'
+
+    def get(self, request, *args, **kwargs):
+        userprofile = get_object_or_404(models.UserProfile, user=request.user)
+        form = forms.UserProfileModelForm(initial={
+                         'email': request.user.email
+                          },
+                          instance=userprofile)
+
+        return render(request, self.template_name, {'form': form, 'user_pic': str(userprofile.user_pic)})
+
+    def post(self, request, *args, **kwargs):
+        userprofile = get_object_or_404(models.UserProfile, user=request.user)
+        form = forms.UserProfileModelForm(request.POST, request.FILES, instance=userprofile)
+        form.fields['user_pic'].required = False
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/blogs")
+        else:
+            return HttpResponseRedirect("/myprofile/edit")
+
+@method_decorator(csrf_exempt, name='dispatch')
+class UserProfileView(View):
+    template_name = 'blogger/userprofile_read.html'
+
+    def get(self, request, *args, **kwargs):
+        obj = get_object_or_404(models.UserProfile, user=request.user)
+        form = forms.UserProfileModelForm(initial={
+                    'email': request.user.email
+                    }, instance=obj)
+        return render(request, self.template_name, {'form': form})
+
 class SignUpView(View):
     template_name = 'registration/signup.html'
 
@@ -24,7 +58,12 @@ class SignUpView(View):
             password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=password)
             login(request, user)
-            return HttpResponseRedirect('/blogs')
+            # create userprofile
+            userprofile = models.UserProfile(
+                    user=request.user,
+                    user_pic='profile_pics/default_profile_image.png')
+            userprofile.save()
+            return HttpResponseRedirect('/myprofile/edit')
         else:
             return render(request, self.template_name, {'form': form})
 

@@ -25,3 +25,28 @@ $("#btn-delete").click(function(e){
     })
 })
 
+
+$(document).ready(function(){
+    var readURL = function(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    console.log(e);
+                    $('.profile-card img').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+    }
+
+    $("#user_pic").on('change', function(){
+            readURL(this);
+        });
+
+    $("#profile-form .profile-card").on('click', function() {
+       $("#user_pic").click();
+    });
+
+})
+

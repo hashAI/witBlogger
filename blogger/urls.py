@@ -9,6 +9,8 @@ urlpatterns = [
         path('', auth_views.login, {'authentication_form':forms.LoginForm}),
         path('login/', auth_views.login, {'authentication_form':forms.LoginForm}),
         path('', include(auth_urls)),
+        path('myprofile/', views.UserProfileView.as_view()),
+        path('myprofile/edit', views.UserProfileEditView.as_view()),
         path('register/', views.SignUpView.as_view()),
         path('blog/create', views.BlogCreateView.as_view()),
         path('blogs/', views.BlogListView.as_view()),

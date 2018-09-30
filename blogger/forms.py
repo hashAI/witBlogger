@@ -42,3 +42,40 @@ class BlogModelForm(ModelForm):
         model = models.Blog
         fields = ['title', 'subtitle', 'content']
 
+class UserProfileModelForm(ModelForm):
+    user_pic = forms.ImageField(widget=forms.FileInput(attrs={
+                        #"class": "form-control form-control-sm"
+                        'id': 'profile_pic'}
+                    ))
+    nick_name = forms.CharField(widget=forms.TextInput(attrs={
+                         "class":"form-control form-control-sm",
+                         "id":"nickname"}
+                     ))
+    description = forms.CharField(widget=forms.Textarea(attrs={
+                         "style":"height:90px;",
+                         "class":"form-control form-control-sm",
+                         "id":"description"}
+                     ))
+    occupation = forms.CharField(widget=forms.TextInput(attrs={
+                         "class":"form-control form-control-sm",
+                         "id":"occupation"}
+                     ))
+    hobbies = forms.CharField(widget=forms.Textarea(attrs={
+                         "style":"height:90px;",
+                         "class":"form-control form-control-sm",
+                         "id":"hobbies"}
+                     ))
+    city = forms.CharField(widget=forms.TextInput(attrs={
+                         "class":"form-control form-control-sm",
+                         "id":"city"}
+                     ))
+    email = forms.EmailField(widget=forms.TextInput(attrs={
+                         "readonly":True,
+                         "class":"form-control form-control-sm",
+                         "id":"email"}
+                     ))
+    class Meta:
+        model = models.UserProfile
+        fields = ['user_pic', 'nick_name', 'email', 'description', 'occupation', 'hobbies', 'city']
+
+
